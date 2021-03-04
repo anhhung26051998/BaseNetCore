@@ -13,6 +13,7 @@ namespace XH.BaseProject.Infastructure.Repository
     {
         private BaseContext _context;
         private DbSet<TEntity> _dbSet;
+
         public RepositoryBase(BaseContext context)
         {
             _context = context;

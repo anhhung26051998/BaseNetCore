@@ -21,6 +21,8 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using XH.BaseProject.API.Contants;
+using XH.BaseProject.Common.APIRequest;
+using XH.BaseProject.Common.Exceptions;
 using XH.BaseProject.Domain.Users;
 using XH.BaseProject.Infastructure;
 using XH.BaseProject.Infastructure.Database;
@@ -41,7 +43,10 @@ namespace XH.BaseProject.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers()
+            services.AddControllers(x=> {
+                x.Filters.Add(typeof(ValidationActionFilter));
+                x.Filters.Add(typeof(GlobalExceptionFilter));
+            })
             .AddNewtonsoftJson(options =>
                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
             );

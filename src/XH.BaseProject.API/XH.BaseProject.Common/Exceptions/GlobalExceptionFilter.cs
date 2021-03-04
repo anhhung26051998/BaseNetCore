@@ -8,8 +8,7 @@ using XH.BaseProject.Common.APIRequest;
 
 namespace XH.BaseProject.Common.Exceptions
 {
-    public class GlobalExceptionFilter<TResource> : IExceptionFilter
-        where TResource : class
+    public class GlobalExceptionFilter : IExceptionFilter
     {
         public GlobalExceptionFilter()
         {

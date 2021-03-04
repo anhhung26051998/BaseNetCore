@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using XH.BaseProject.Domain.Users;
+using XH.BaseProject.Infastructure.Domain.Users;
 using XH.BaseProject.Infastructure.Interfaces;
 using XH.BaseProject.Infastructure.Repository;
 
@@ -29,6 +31,11 @@ namespace XH.BaseProject.Infastructure.Database
             .As<ISqlConnectionFactory>()
             .WithParameter("connectionString", _databaseConnectionString)
             .InstancePerLifetimeScope();
+
+            builder.RegisterType(typeof(UserRepository))
+                 .AsSelf()
+                 .As(typeof(IUserRepository))
+                 .InstancePerDependency();
         }
     }
 }
