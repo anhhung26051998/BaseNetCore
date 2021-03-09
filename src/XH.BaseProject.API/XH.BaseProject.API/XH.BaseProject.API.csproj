@@ -30,6 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\XH.BaseProject.Aplication\XH.BaseProject.Aplication.csproj" />
     <ProjectReference Include="..\XH.BaseProject.Infastructure\XH.BaseProject.Infastructure.csproj" />
   </ItemGroup>
 

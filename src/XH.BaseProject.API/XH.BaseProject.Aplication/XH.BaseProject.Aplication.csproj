@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="6.1.0" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\XH.BaseProject.Common\XH.BaseProject.Common.csproj" />
+    <ProjectReference Include="..\XH.BaseProject.Domain\XH.BaseProject.Domain.csproj" />
+    <ProjectReference Include="..\XH.BaseProject.Infastructure\XH.BaseProject.Infastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Handle\Car\" />
+  </ItemGroup>
+
+</Project>

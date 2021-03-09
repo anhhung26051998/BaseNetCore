@@ -14,7 +14,7 @@ namespace XH.BaseProject.Domain.Users
         public DateTime? ModifiedDate { get; set; }
         public Guid? ModifiedBy { get; set; }
 
-        public IList<Car> Cars { get; set; }
+        public virtual IList<Car> Cars { get; set; }
         public User()
         {
             this.Cars = new List<Car>();

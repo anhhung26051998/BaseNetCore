@@ -19,9 +19,9 @@ namespace Buca.Common.FilterList
         typeof(string).GetMethod("EndsWith", new Type[] { typeof(string) });
 
 
-        public static IEnumerable<T> Where<T>(this IEnumerable<T> list, IList<FilterValue> filters)
+        public static IQueryable<T> Where<T>(this IQueryable<T> list, IList<FilterValue> filters)
         {
-            var expression = GetExpression<T>(filters)?.Compile();
+            var expression = GetExpression<T>(filters);
 
             if (expression != null)
                 return list.Where(expression);

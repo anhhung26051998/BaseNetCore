@@ -21,8 +21,10 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using XH.BaseProject.API.Contants;
+using XH.BaseProject.Aplication.SeedWork;
 using XH.BaseProject.Common.APIRequest;
 using XH.BaseProject.Common.Exceptions;
+using XH.BaseProject.Common.FilterList;
 using XH.BaseProject.Domain.Users;
 using XH.BaseProject.Infastructure;
 using XH.BaseProject.Infastructure.Database;
@@ -46,10 +48,17 @@ namespace XH.BaseProject.API
             services.AddControllers(x=> {
                 x.Filters.Add(typeof(ValidationActionFilter));
                 x.Filters.Add(typeof(GlobalExceptionFilter));
+                x.ModelBinderProviders.Insert(0, new FilterRequestBinderProvider());
             })
             .AddNewtonsoftJson(options =>
                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
             );
+            services.Configure<ApiBehaviorOptions>(options =>
+            {
+                options.SuppressConsumesConstraintForFormFileParameters = true;
+                options.SuppressInferBindingSourcesForParameters = true;
+                options.SuppressModelStateInvalidFilter = true;
+            });
             // config swagger
             services.AddSwaggerGen(c=>
             {
@@ -124,6 +133,7 @@ namespace XH.BaseProject.API
             // for you.
             //builder.RegisterAssemblyModules(typeof(RepositoryInjectModule).Assembly);
             builder.RegisterModule(new DataAccessModule(connectionString));
+            builder.RegisterModule(new RegisterModule());
         }
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

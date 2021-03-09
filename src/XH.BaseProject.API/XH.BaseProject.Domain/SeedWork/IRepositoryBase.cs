@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using XH.BaseProject.Common.FilterList;
 
 namespace XH.BaseProject.Domain.SeedWork
 {
@@ -11,9 +12,10 @@ namespace XH.BaseProject.Domain.SeedWork
         IQueryable<T> GetAll(string includes="");
         Task<T> GetbyId(Guid Id);
 
-        void Insert(T entity);
-        void Update(T entity);
+        Task<T> InsertAsync(T entity);
+        Task<T> UpdateAsync(T entity);
         void Delete(Guid Id);
+        void SetDbContext(object dbContext);
 
     }
 }
